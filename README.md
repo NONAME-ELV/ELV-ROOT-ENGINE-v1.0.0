@@ -133,4 +133,3 @@ Copyright (C) 2026 HxN
 ## Contact
 
 * Author: **HxN**
-* Repository: ```<https://github.com/NONAME-ELV/HxN>```
