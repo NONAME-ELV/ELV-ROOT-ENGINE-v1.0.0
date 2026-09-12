@@ -1,60 +1,136 @@
-# 💀 E.L.V ROOT ENGINE v1.0.0
-**Advanced Linux Privilege Escalation & Enumeration Suite**
+# E.L.V ROOT ENGINE v1.0.0
 
-[![Author](https://img.shields.io/badge/Author-HxN-red.svg)]()
-[![License](https://img.shields.io/badge/License-GPLv3-blue.svg)]()
-[![Platform](https://img.shields.io/badge/Platform-Linux-orange.svg)]()
+**E.L.V ROOT ENGINE** is a Python `*nix` Enumerator & Auto Privilege Escalation tool.
 
-</div>
-
----
-
-### ⚡ Overview
-**E.L.V ROOT ENGINE** adalah utilitas otomatisasi *post-exploitation* yang dirancang untuk melakukan *enumeration* secara mendalam dan memetakan vektor *privilege escalation* (LPE) pada sistem berbasis Linux. 
-
-Script ini dikembangkan untuk kebutuhan *research red team* guna memvalidasi efektivitas biner SUID, kapabilitas (*capabilities*), *weak permissions*, hingga konfigurasi file sensitif agar menghasilkan analisis *true positive* yang presisi.
+Author: **HxN**
+License: **GNU GPL v3**
+Version: **1.0.0**
+Platform: **\*nix**
 
 ---
 
-### 🚀 Features
-* **Automated & Manual Enumeration**: Mode eksekusi ganda untuk audit cepat (`-a`) maupun analisis manual mendalam (`-m`).
-* **SUID Mapping Engine**: Identifikasi biner SUID non-standar dan pemetaan eksploitasi berbasis GTFOBins (read, write, exec, limit).
-* **Environment & Victim Profiling**: Ekstraksi detail kernel, distribusi, arsitektur, dan struktur UID/GID pengguna secara real-time.
-* **Sensitive File Audit**: Deteksi konfigurasi rentan pada `/etc/passwd`, `/etc/shadow`, direktori `/root`, serta file konfigurasi web (`wp-config.php`, `redis.conf`, `apache2.conf`).
-* **Capabilities & Writable Search**: Pemindaian file berkemampuan khusus (`getcap`) dan pencarian *world-writable files* milik root.
+## Disclaimer
+
+This tool is intended for **authorized security testing only**.
 
 ---
 
-### 📦 Installation & Requirements
+## Usage
 
-Pastikan script ini dijalankan di dalam *environment* POSIX-compliant (Linux native, VM, atau WSL). Jangan mengeksekusinya langsung melalui *Command Prompt* Windows standar untuk menghindari *environment mismatch* (`ModuleNotFoundError`).
+```
+E.L.V ROOT ENGINE v1.0.0
+[ Privilege Escalation Suite ]
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -v, --version         show version and exit
+  -a, --auto            automated privilege escalation process
+  -m, --manual          system enumeration
+  -n, --nocolor         disable color
+  -b, --banner          show banner and exit
+  -s, --suid            suid binary enumeration
+  -w, --weak            weak permissions of files enumeration
+  -p, --php             PHP configuration files enumeration
+  -c, --capabilities    capabilities enumeration
+  -f, --full-writables  world writable files enumeration
+
+usage examples:
+  ./elv.py -a
+  ./elv.py -m
+  ./elv.py -v
+  ./elv.py -b
+
+Specific categories usage examples:
+  ./elv.py -a -s
+  ./elv.py -m -w
+  ./elv.py -a -s -p
+  ./elv.py -m -w -c -p
+  ./elv.py -a -s -c -p -f
+
+  *Use the above arguments with -n to disable color.
+```
+
+---
+
+## Installation
 
 ```bash
-# Clone repositori
-git clone [https://github.com/NONAME-ELV/elv-root-engine.git](https://github.com/NONAME-ELV/elv-root-engine.git)
-cd elv-root-engine-v1.0.0
+git clone <your-repo-url>
+cd ELVENGINE
+chmod +x elv.sh elv.py build.sh
+```
 
-# Berikan izin eksekusi pada wrapper shell
-chmod +x elv.sh
+### Termux
 
-# Install dependensi opsional (jika diperlukan)
-pip3 install -r requirements.txt
+```bash
+pkg update && pkg upgrade
+pkg install python coreutils zip
+python elv.py -b
+```
 
-💻 Usage Examples
-Tampilkan banner dan menu bantuan:
-python3 elv.py -h
+### Linux
 
-Jalankan automated privilege escalation process secara menyeluruh:
-python3 elv.py -a
+```bash
+sudo apt install python3
+python3 elv.py -b
+```
 
-Enumerasi spesifik (misal: SUID binaries & PHP config enumeration):
-python3 elv.py -m -s -p
+---
 
-Matikan output warna terminal (nocolor mode):
-python3 elv.py -a -n
+## Modes
 
-🛡️ Disclaimer
-Tool ini dibuat murni untuk keperluan authorized security research, audit sistem internal, dan pembelajaran ethical hacking. Penulis (HxN) tidak bertanggung jawab atas penyalahgunaan atau kerusakan yang ditimbulkan akibat penggunaan perangkat lunak ini di luar batas legalitas.
-📄 License
-Distributed under the GNU General Public License v3.0. See LICENSE for more information.
+* **Manual** — enumeration only, no auto-exploit
+* **Auto** — automated privilege escalation attempt
 
+---
+
+## Exploitation Categories
+
+### SUID Binaries
+* General SUIDs
+* SUIDs for reading files
+* SUIDs for creating files as root
+* Limited SUIDs
+* Custom SUIDs
+
+### Weak Permissions
+* `/etc/passwd`
+* `/etc/shadow`
+* `apache2.conf`
+* `httpd.conf`
+* `redis.conf`
+* `/root`
+
+### Weak Ownership
+* `/etc/passwd`
+* `/etc/shadow`
+* `apache2.conf`
+* `httpd.conf`
+* `redis.conf`
+* `/root`
+
+### Capabilities
+* General capabilities
+* Custom capabilities
+* With `CAP_SETUID`
+
+### Interesting Files
+* PHP configuration files
+* World writable files
+
+---
+
+## License
+
+GNU General Public License v3.0. See [LICENSE](LICENSE).
+
+```
+Copyright (C) 2026 HxN
+```
+
+---
+
+## Contact
+
+* Author: **HxN**
+* Repository: `<your-repo-url>`
