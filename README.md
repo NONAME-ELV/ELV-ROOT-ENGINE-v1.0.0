@@ -1,3 +1,4 @@
+cat << 'EOF' > README.md
 # E.L.V ROOT ENGINE v1.0.0
 
 **E.L.V ROOT ENGINE** is a Python `*nix` Enumerator & Auto Privilege Escalation tool.
@@ -109,3 +110,4 @@ Copyright (C) 2026 HxN
 
 Contact
  * Author: HxN
+   EOF
